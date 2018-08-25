@@ -1,0 +1,83 @@
+---
+author: "Luis Fernando García Acosta"
+title: "Vector's functions"
+output: html_document
+---
+
+
+## Trying R Markdown 
+In this document I'm testing first the functions that we can apply to data so firstly lets declare two vectors. Then in each function I'm going to give the explanation of what the function does.
+```{r}
+x <- c(4, 9,6.7,9.32,7.54,0.78,2.378)
+y <- c(12.5,156.54,23.7,123.431,124.1,98,1.05)
+```
+
+This function tells the user what type of data the vectors contain
+```{r }
+typeof(x)
+```
+
+This functions tells the user minimum value and the maximum of a data set
+```{r}
+min(x)
+max(x)
+```
+
+This function tells the user the total sum of the data set
+```{r}
+sum(x)
+sum(y)
+```
+
+This function tells the user the median of a data set
+```{r}
+median(x)
+```
+
+This function tell the user the correlation between two data sets
+```{r}
+cor(x,y)
+```
+
+This function sorts data sets for us
+```{r}
+sort(x)
+sort(y)
+
+```
+
+The quantile function produces sample quantiles corresponding to the given probabilities
+```{r}
+quantile(x)
+```
+
+The next function give us the cumulative sums 
+```{r}
+cumsum(x)
+```
+
+Like we can imagine the next one give us the comulative products
+```{r}
+cumprod(x)
+```
+
+The next function give us the cumulative minima
+```{r}
+cummin(y)
+```
+
+The next function sort the vector and returns the indices of each element that it has before the sorting
+```{r}
+order(x)
+```
+
+Returns the sample ranks of the values in a vector
+```{r}
+rank(x)
+```
+
+We can use the next function to visualize data 
+```{r x}
+plot(x)
+```
+
