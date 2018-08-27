@@ -1,4 +1,6 @@
 setwd("~/Documents/Ingenieria de Software/Ciencia de Datos/Titanic_DataAnalysis")
+install.packages("moments")
+library(moments)
 titanic_data <- read.csv("titanic.csv",header = TRUE)
 
 head(titanic_data)
@@ -34,6 +36,8 @@ boxplot(titanic_data$Parch)
 getmode(titanic_data$Parch)
 hist(titanic_data$Parch)
 getmode(titanic_data$Embarked)
-
 plot(titanic_data$Pclass,titanic_data$Fare)
-
+plot(titanic_data$Sex,titanic_data$Survived)
+quantile(titanic_data$Pclass)
+skewness(titanic_data$SibSp)
+skewness(titanic_data$Parch)
