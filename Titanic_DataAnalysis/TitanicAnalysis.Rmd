@@ -1,0 +1,30 @@
+---
+title: "Titanic Analysis"
+output: html_document
+author: "Luis Fernando García Acosta"
+---
+
+## Titanic Data Analysis
+<br/>
+In this pratice we have a Titanic dataset so the goal is to get some information about what happened that day or some data that we can only get from our data. We are going to start with basic data. In this pratice I'm going to use some statistics techniques or knowledges that we can aply in here to see what conclution we can get. 
+<br/><br/>
+
+
+
+## Basic Data
+First I'm going to show you a general summary of what our dataset looks like.
+```{r,echo=FALSE}
+titanic_data <- read.csv("titanic.csv",header = TRUE)
+summary(titanic_data)
+```
+<br/>
+The first thing we can notice is that passengers have an ID so we can say that the total number of passengers is:
+```{r,echo=FALSE}
+nrow(titanic_data)
+```
+<br/>
+We can get other clear information from this data we can see that in the Titanic were **314 females** and **577 males**
+
+
+
+
