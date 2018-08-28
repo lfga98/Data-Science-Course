@@ -24,7 +24,11 @@ nrow(titanic_data)
 ```
 <br/>
 We can get other clear information from this data we can see that in the Titanic were **314 females** and **577 males**
-
-
+<br/>
+<br/>
+Also we can see that we have the passanger's ages the minimun age is ** 1 year old ** and the maximum age is **80 years old**
+<br/>
+<br/>
+And the last fact about the data before continuing with the plots, the minimu ticket fare costed **0.0 British Pounds** and the most expensive ticket costed **512 British Pounds**
 
 
