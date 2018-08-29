@@ -1,5 +1,5 @@
 ---
-title: "Titanic Analysis"
+title: "Titanic Data Analysis"
 output: html_document
 author: "Luis Fernando García Acosta"
 ---
@@ -127,5 +127,22 @@ But we can see that there are a few cases where the people did travel with some 
 ```{r,echo=FALSE}
   boxplot(titanic_data$SibSp)
 ```
+And we can see that our skewness confirms this conlcusion
+```{r,echo=FALSE}
+library(moments)
+skewness(titanic_data$SibSp)
+```
 
+## Number of children or parents
 
+And to confirm that in the Titanic there was not a lot of families we are going to see the number of childrens and parents.
+We are going to see the mode of this value.
+```{r,echo=FALSE}
+    getmode(titanic_data$Parch)
+```
+And the histogram that shows the same conclusion.
+```{r,echo=FALSE}
+  hist(titanic_data$Parch)
+```
+
+## Extra data

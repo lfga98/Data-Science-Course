@@ -40,10 +40,10 @@ hist(titanic_data$SibSp)
 boxplot(titanic_data$Parch)
 getmode(titanic_data$Parch)
 hist(titanic_data$Parch)
-getmode(titanic_data$Embarked)
+
+
 plot(titanic_data$Pclass,titanic_data$Fare)
 plot(titanic_data$Sex,titanic_data$Survived)
 quantile(titanic_data$Pclass)
-skewness(titanic_data$SibSp)
 skewness(titanic_data$Parch)
 
