@@ -28,11 +28,15 @@ hist(titanic_data$Pclass)
 boxplot(titanic_data$Survived)
 getmode(titanic_data$Survived)
 hist(titanic_data$Survived)
+
+
 boxplot(titanic_data$Age)
 hist(titanic_data$Age)
 boxplot(titanic_data$SibSp)
 getmode(titanic_data$SibSp)
 hist(titanic_data$SibSp)
+
+
 boxplot(titanic_data$Parch)
 getmode(titanic_data$Parch)
 hist(titanic_data$Parch)

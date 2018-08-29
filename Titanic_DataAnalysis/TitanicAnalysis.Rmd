@@ -112,8 +112,20 @@ As we can see in the histogram the most people did not survive. We can see it if
   getmode(titanic_data$Survived)
 ```
 
+## Numbers of siblings / spouses aboard the Titanic
 
+In this column we can see the number of brothers or sisters or spouses
+```{r,echo=FALSE}
+  getmode(titanic_data$SibSp)
+```
+As we can see the most of the people did not travel with family.As the histogram shows the same conclusion
 
-
+```{r,echo=FALSE}
+  hist(titanic_data$SibSp)
+```
+But we can see that there are a few cases where the people did travel with some of their family
+```{r,echo=FALSE}
+  boxplot(titanic_data$SibSp)
+```
 
 
