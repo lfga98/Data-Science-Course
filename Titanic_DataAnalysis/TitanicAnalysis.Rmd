@@ -72,4 +72,31 @@ And the histogram shows that the most of the ages were between 20 and 30 years o
 
 The second thing we are going to analise is the class of the passengers
 </br>
+```{r,echo=FALSE}
+  summary(titanic_data$Pclass)
+```
+First we have to understand that there were 3 classes, first class,second and third. <br/>
+<br/>
+<br/>
+The most of the people were in third class
+
+```{r,echo=FALSE}
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+getmode(titanic_data$Pclass)
+```
+As we can see in the box plot<br/>
+```{r,echo=FALSE}
+boxplot(titanic_data$Pclass)
+```
+<br/>
+<br/>
+And we can get a estimation how many people were in which class with the next histogram
+```{r,echo=FALSE}
+hist(titanic_data$Pclass)
+```
+
+
 
