@@ -41,3 +41,4 @@ plot(titanic_data$Sex,titanic_data$Survived)
 quantile(titanic_data$Pclass)
 skewness(titanic_data$SibSp)
 skewness(titanic_data$Parch)
+

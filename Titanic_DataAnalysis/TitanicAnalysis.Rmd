@@ -41,7 +41,11 @@ We can see that **168 persons** embarked in Cherbourg</br>
 
 
 ## Data Analysis Session
+<br/>
+<br/>
 
+## Age
+  
 The first thing we are going to analize the age of the passengers
 </br>
 ```{r,echo=FALSE}
@@ -49,5 +53,23 @@ The first thing we are going to analize the age of the passengers
 ```
 
 We can see that the minimum age was .042 years old exactly, and the maximum age was 80 years old. We can also see that the median age was 28 and the average was between 28 an 30 years old
+<br/>
 
+We can see the box plot how ages are distributed
+```{r, echo=FALSE}
+  boxplot(titanic_data$Age)
+```
+
+<br/> 
+And the histogram shows that the most of the ages were between 20 and 30 years old, really young people
+
+```{r,echo=FALSE}
+  hist(titanic_data$Age)
+```
+
+
+## Class
+
+The second thing we are going to analise is the class of the passengers
+</br>
 
