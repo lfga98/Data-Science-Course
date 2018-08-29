@@ -10,6 +10,7 @@ nrow(titanic_data)
 
 summary(titanic_data$Survived)
 summary(titanic_data$Pclass)
+
 summary(titanic_data$Sex)
 summary(titanic_data$Age)
 summary(titanic_data)

@@ -98,5 +98,22 @@ And we can get a estimation how many people were in which class with the next hi
 hist(titanic_data$Pclass)
 ```
 
+The finally conclusion I can get from this data is that in the disaster the most of the corpses did not have the chance of getting rescued from the sea, the first class passengers(corpses) had the the major priority of been rescued from the sea and we can see tha the first class passengers were like about 220-230. 
+
+## Survivors
+
+We can get from the data  about how many people survived we can see the next histogram of suvivors, 0 means no survivor and 1 means survivor.
+```{r,echo=FALSE}
+  hist(titanic_data$Survived)
+```
+
+As we can see in the histogram the most people did not survive. We can see it if we get the mode of the dataset in this column.
+```{r,echo=FALSE}
+  getmode(titanic_data$Survived)
+```
+
+
+
+
 
 
