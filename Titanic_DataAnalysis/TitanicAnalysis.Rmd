@@ -146,3 +146,20 @@ And the histogram that shows the same conclusion.
 ```
 
 ## Extra data
+
+Here I am going to show you some extra data that I can notice.
+```{r,echo=FALSE}
+  plot(titanic_data$Pclass,titanic_data$Fare)
+```
+
+The more expensive tickets fare were paid by the first class passengers.
+
+```{r,echo=FALSE}
+  plot(titanic_data$Sex,titanic_data$Survived)
+```
+<br/>
+And our final plot shows that the survivors in their most were females.
+
+
+
+
