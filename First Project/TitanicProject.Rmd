@@ -25,4 +25,12 @@ Route:	Southampton to New York City
    knitr::include_graphics('./Titanic.jpg')
 ```
 
+## Introduction
+In this project we are going to analize a data set of the titanic that we have and we are going to make the data analysis in a language R and I'm going to use CSS to give some style to the presentation.
+Just to introduce yourself to the dataset and the analysis, There were a total 2224 persons and there were lifeboats for only 1178 people. Therefore 1500 people died out of 2224. This is not just a movie but a real story of Titanic ship that crashed in April, 1912.
+
+## Exploring the Dataset
+```{r}
+
+```
 
