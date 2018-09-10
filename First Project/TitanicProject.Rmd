@@ -30,7 +30,27 @@ In this project we are going to analize a data set of the titanic that we have a
 Just to introduce yourself to the dataset and the analysis, There were a total 2224 persons and there were lifeboats for only 1178 people. Therefore 1500 people died out of 2224. This is not just a movie but a real story of Titanic ship that crashed in April, 1912.
 
 ## Exploring the Dataset
+<strong>Let's see the data that we have and the characteristics that we have.</strong>
 ```{r}
-
+head(titanic_data,1)
 ```
+
+## Characteristics of the Dataset
+  -PassengerId: Id of every passenger</br></br>
+  -Survived: If a passenger survived has 1 and 0 if It didn't</br></br>
+  -Pclass: We have 3 classes of passengers. Class: 1, 2 and 3</br></br>
+  -Name: The name of the passenger</br></br>
+  -Sex: The gender of the passenger</br></br>
+  -Age: Age of passenger.</br></br>
+  -SibSp: Indication that passenger have siblings and spouse.</br></br>
+  -Parch: Whether a passenger is alone or have family.</br></br>
+
+## Characteristics of the Dataset
+  -Ticket: Ticket no of passenger.</br></br>
+  -Fare: Indicating the fare.</br></br>
+  -Cabin: The cabin of passenger.</br></br>
+  -Embarked: The embarked category.</br></br>
+
+  
+
 
