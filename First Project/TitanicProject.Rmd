@@ -1,36 +1,28 @@
 ---
-title: "TitanicProject"
+title: "Titanic Data Explanation"
 output: ioslides_presentation
+author: "Luis Fernando García Acosta"
+date: September 12, 2018
+css: custom.css
 ---
-```{r}
+
+```{r,echo=FALSE}
+
 setwd("~/Documents/Ingenieria de Software/Ciencia de Datos/First Project")
 ```
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+titanic_data <- read.csv("titanic.csv",header = TRUE)
 ```
 
-## R Markdown
+## Historical Introduction 
+The history and the data that we have in this presentation is about the disaster of the Titanic. The Titanic was a British passenger liner that sank in the North Atlantic Ocean in the early hours of 15 April 1912, after colliding with an iceberg during its maiden voyage from Southampton to New York City.
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Route:	Southampton to New York City
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
-
-## Slide with Bullets
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+```{r, echo=FALSE}
+   knitr::include_graphics('./Titanic.jpg')
 ```
 
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
 
