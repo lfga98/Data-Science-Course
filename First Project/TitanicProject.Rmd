@@ -35,6 +35,36 @@ Just to introduce yourself to the dataset and the analysis, There were a total 2
 head(titanic_data,1)
 ```
 
+## Exploring the Dataset
+<strong>Let's see the data that we have and the structure of the data</strong>
+```{r,echo=FALSE}
+str(titanic_data)
+```
+
+## Exploring the Dataset
+<strong>Let's see now the missing data</strong>
+```{r}
+colSums(is.na(titanic_data))
+```
+## Trying to solve the mising data
+<strong>In this case we are not going to do a model or a prediction, the only solution I'm going to implement is to fill those missing values with the mean of the column or with another value </strong>
+```{r}
+colSums(titanic_data=="")
+titanic_data$Embarked[titanic_data$Embarked==""]="C"
+cols<-c("Survived","Pclass","Sex","Embarked")
+for (i in cols){
+  titanic_data[,i] <- as.factor(titanic_data[,i])
+}
+```
+
+
+## Let's going to work with this now
+```{r}
+str(titanic_data)
+```
+
+
+
 ## Characteristics of the Dataset
   -PassengerId: Id of every passenger</br></br>
   -Survived: If a passenger survived has 1 and 0 if It didn't</br></br>
@@ -92,5 +122,8 @@ summary(titanic_data$Fare)
 ```{r,echo=FALSE}
 summary(titanic_data$Embarked)
 ```
-  
 
+## Boxplot of Passenger ID
+```{r,echo=FALSE}
+  boxplot(titanic_data$PassengerId)
+```
