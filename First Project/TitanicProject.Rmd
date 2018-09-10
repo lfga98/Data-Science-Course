@@ -31,7 +31,7 @@ Just to introduce yourself to the dataset and the analysis, There were a total 2
 
 ## Exploring the Dataset
 <strong>Let's see the data that we have and the characteristics that we have.</strong>
-```{r}
+```{r,echo=FALSE}
 head(titanic_data,1)
 ```
 
@@ -49,8 +49,48 @@ head(titanic_data,1)
   -Ticket: Ticket no of passenger.</br></br>
   -Fare: Indicating the fare.</br></br>
   -Cabin: The cabin of passenger.</br></br>
-  -Embarked: The embarked category.</br></br>
+  -Embarked: Port of embarkation. C = Cherbourg, Q = Queenstown, S =              Southampton</br></br>
 
+## Summary of the dataset
+
+```{r,echo=FALSE}
+summary(titanic_data)
+```
+
+## Summary of Passenger ID
+```{r,echo=FALSE}
+summary(titanic_data$PassengerId)
+```
+
+## Summary of Survivors
+```{r,echo=FALSE}
+summary(titanic_data$Survived)
+```
+
+## Summary of Passengers class
+```{r,echo=FALSE}
+summary(titanic_data$Pclass)
+```
+
+## Summary of Passengers Sex
+```{r,echo=FALSE}
+summary(titanic_data$PassengerId)
+```
+
+## Summary of Passengers Age
+```{r,echo=FALSE}
+summary(titanic_data$Age)
+```
+  
+## Summary of Passengers Fare
+```{r,echo=FALSE}
+summary(titanic_data$Fare)
+```
   
 
+## Summary of Passengers Port of embarkation
+```{r,echo=FALSE}
+summary(titanic_data$Embarked)
+```
+  
 
