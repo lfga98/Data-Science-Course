@@ -19,3 +19,8 @@ normalize <-function(x){
 
 wbcd_n <- as.data.frame(lapply(wbcd[2:31], normalize))
 summary(wbcd_n$area_mean)
+
+##Prepared the train and test data
+wbcd_train <- wbcd_n[1:469, ]
+wbcd_test <- wbcd_n[470:569, ]
+
