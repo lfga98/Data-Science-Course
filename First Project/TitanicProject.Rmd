@@ -81,7 +81,7 @@ str(titanic_data)
   -Cabin: The cabin of passenger.</br></br>
   -Embarked: Port of embarkation. C = Cherbourg, Q = Queenstown, S =              Southampton</br></br>
 
-## Summary of the dataset
+## Summary of the Dataset
 
 ```{r,echo=FALSE}
 summary(titanic_data)
@@ -97,7 +97,7 @@ summary(titanic_data$PassengerId)
 summary(titanic_data$Survived)
 ```
 
-## Summary of Passengers class
+## Summary of Passengers Class
 ```{r,echo=FALSE}
 summary(titanic_data$Pclass)
 ```
@@ -118,12 +118,24 @@ summary(titanic_data$Fare)
 ```
   
 
-## Summary of Passengers Port of embarkation
+## Summary of Passengers Port of Embarkation
 ```{r,echo=FALSE}
 summary(titanic_data$Embarked)
 ```
 
-## Boxplot of Passenger ID
+## Boxplot of Passengers Age
 ```{r,echo=FALSE}
-  boxplot(titanic_data$PassengerId)
+  boxplot(titanic_data$Age)
 ```
+
+## Boxplot of Passengers Fare
+```{r,echo=FALSE}
+  boxplot(titanic_data$Fare)
+```
+
+##Skew of the data
+```{r,echo=FALSE}
+
+```
+
+
