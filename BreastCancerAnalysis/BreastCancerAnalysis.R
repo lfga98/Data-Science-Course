@@ -33,6 +33,19 @@ library(class)
 wbcd_test_pred <- knn(train = wbcd_train,test = wbcd_test,cl = wbcd_train_labels,k=21)
 install.packages("gmodels")
 library(gmodels)
+## Comparing the results
 CrossTable(x=wbcd_test_labels,
            y=wbcd_test_pred,
            prop.chisq = FALSE)
+
+
+## Improving perfomance
+wbcd_z <- as.data.frame(scale(wbcd[-1]))
+summary(wbcd_z$area_mean)
+wbcd_train <- wbcd_z[1:469, ]
+wbcd_test <- wbcd_z[470:569, ]
+wbcd_test_pred <- knn(train = wbcd_train,test = wbcd_test,cl = wbcd_train_labels,k=21)
+CrossTable(x=wbcd_test_labels,
+           y=wbcd_test_pred,
+           prop.chisq = FALSE)
+## It did not work but we saw another way on normalization
