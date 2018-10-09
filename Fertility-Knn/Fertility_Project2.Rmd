@@ -1,0 +1,581 @@
+---
+title: "Fertility Project"
+author: "Luis Fernando Garc&iacute;a Acosta and Carlos Daniel Ruvalcaba Serrano"
+date: October 10, 2018
+output: 
+  ioslides_presentation:
+    css: Stylesheet.css
+    widescreen: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+Using R a data analysis programming language and KNN K nearest neighbors is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure, we are going to analyze a dataset where 100 volunteers provide a semen sample analyzed according to the WHO 2010 criteria. Sperm concentration are related to socio-demographic data, environmental factors, health status, and life habits. The main goal is to predict whether a patient´s
+sperm quality it's ALTERED or NORMAL.<br/>
+Despite of we are going to deal with data classification, KNN application and final result interpretation.
+
+
+We hope you enjoy it!
+
+-Luis Fernando García, Carlos Daniel Ruvalcaba Serrano
+ Autonomus University of Zacatecas, Mexico.
+
+##Abstract.
+
+A dataset of 100 observations of different men was collected in order to predict a model about Fertility in men.
+
+In the present project we are attempting to predict wheter a men is fertile or infertile using machine learning techiniques.
+We are using the K-nearest neigbohrs algorithm to get a model so we will be able to predict fertility
+for new incoming men. 
+
+Because the domain deals with medical conditions of patients, we are expecting to obtain a
+model with a high level of prediction.
+
+The data was obtained from UCI Machine Learning Repository.
+It contains 100 observations and 10 attributes.
+
+##Data domain explanation
+
+Infertility affects approximately 1 out of every 6 couples.
+Male infertility factors contribute to approximately 30% of all infertility cases, and male infertility alone accounts for approximately one-fifth of all infertility cases.
+
+Much research remains to be performed on the topic of male infertility, as many cases still receive an “unknown cause” diagnosis (half of the cases). 
+Male infertility usually occurs because of sperm that are abnormal, because of inadequate numbers of sperm, or problems with ejaculation.
+
+
+##Data domain explanation.
+Potential male infertility will be diagnosed as part of a thorough physical examination. 
+The examination will include a medical history regarding potential contributing factors.
+
+There is usually nothing that can be done to prevent male infertility caused by genetic problems or illness. 
+However, there are actions that men can take to decrease the possibility of infertility.
+
+
+## Disdavantages:
+<br/><br/>
+1- The attributes can't be obtained easily, it must be collected trough a specialiced laboratory.<br/><br/>
+2- Is a relatively small dataset.<br/><br/>
+3- Altought a man is a man here and in China, we think the results may
+vary from place to place by the conditions and habits in which distinct men live.<br/><br/>
+
+##Advantages:
+1- The Dataset is already normalized. We think they used the min-max normalization because all the values are between 0 and 1.<br/><br/>
+2- It doesn't have missing values.<br/><br/>
+3- The dataset is classified as "classification and Regression" dataset by the UCI, and by the size of the Dataset, is perfect for the project pourpose.<br/><br/>
+4- The dataset is according to the World Health Organization Criteria.<br/><br/>
+
+##Limitations of the study.
+An important fact of the dataset is its size, actually, is very small.
+The prediction of the data has just 2 output: fertile or infertile. We rely on the UCI Repository and we think there is not error in the data recolection.
+
+Comparing against other domains, the dataset is result of studies in laboratories and are less susceptible to fake data.
+
+An interesting fact who called our attention is the season of the year in which the data was collected. We are not sure if this is an important attribute, but we will discover it through the development of this project.
+
+K-nearest neighbors is a proficient algorithm for prediction in this dataset, but if it wouldn't, a brief analysis of the correlation will also be helpful.
+
+# Exploring the Dataset.
+```{r,echo=FALSE}
+```
+
+## Exploring the Dataset.
+The first thing to notice it's that we have 100 instances
+```{r, echo=TRUE}
+ferti_data <- read.table("fertility_Diagnosis.txt",header=TRUE,sep = ",")
+library(class)
+library(gmodels)
+nrow(ferti_data)
+```
+The second thing to noticce it's that we have 10 attributes
+```{r,echo=TRUE}
+ncol(ferti_data)
+```
+## Exploring the dataset
+<strong>Each instance contains the next characteristics </strong>
+  <br/><br/>-Season: Season in which the analysis was performed<br/><br/>
+  -Age: Age of the patient<br/><br/>
+  -Child_Disease: If the patient had some children disease (ie , chicken pox, measles, mumps, polio)<br/><br/>
+  -Accident: If the patient had an accident or a serious trauma<br/><br/>
+  -Surge: Patient had surgical intervention<br/><br/>
+  -Fever: High fevers in the last year<br/><br/>
+  -AlcoholConsumption: Frequency of alcohol consumption<br/><br/>
+
+## Exploring the dataset
+  -Smoke: If the patient smokes<br/><br/>
+  -Hours Sitting: Number of hours spent sitting per day <br/><br/>
+  -Diagnosis: Patients sperm quality<br/><br/>
+  
+##Exploring the Dataset.
+<strong>Season</strong>
+Season describes in which season of the year the study was made.<br/><br/>
+ -Winter: -1 <br/><br/>
+ -Spring: -0.33<br/><br/>
+ -Summer: .33<br/><br/>
+ -Fall: 1<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Season)
+
+```
+
+##Exploring the Dataset.
+<strong>Age</strong>
+Age describes the age of the patient at the time of analysis. The age goes from 18 to 36<br/><br/>
+  -Age 0 to 1<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Age)
+
+```
+
+##Exploring the Dataset.
+<strong>Child_Disease</strong>
+Child_disease describes if the pateint sufferd a Childish diseases<br/><br/>
+  -Yes: 0 <br/><br/>
+  -No: 1<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Child_Disease)
+
+```
+
+##Exploring the Dataset.
+<strong>Accident</strong>
+Accident describes if a patient had an accident or serious trauma
+<br/><br/>
+  -Yes: 0 <br/><br/>
+  -No: 1<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Accident)
+
+```
+
+
+##Exploring the Dataset.
+<strong>Surge</strong>
+Surge describes if the patient has been Surgical intervention 
+<br/><br/>
+  -Yes: 0 <br/><br/>
+  -No: 1<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Accident)
+
+```
+
+##Exploring the Dataset.
+<strong>Fever</strong>
+<br/><br/>Fever describes if the patient has had a high fevers in the last year 
+<br/><br/>
+  -Less than three months ago: -1 <br/><br/>
+  -More than three months ago: 0<br/><br/>
+  -No: 1<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Fever)
+
+```
+##Exploring the Dataset.
+<strong>AlcoholConsumption</strong>
+<br/><br/> AlcoholConsumption describes frequency of alcohol consumption of a patient
+<br/><br/>
+  -1 : several times a day <br/><br/>
+  -2 :  every day <br/><br/>
+  -3 : several times a week <br/><br/>
+  -4 :  once a week <br/><br/>
+  -5 :  hardly ever or never <br/><br/>
+
+##Exploring the Dataset.
+AlcoholConsumption goes from 0 to 1<br/>
+```{r,echo=TRUE}
+  summary(ferti_data$AlcoholConsumption)
+```
+
+##Exploring the Dataset.
+<strong>Smoke</strong>
+<br/><br/> Smoke describes the patient's smoking habit
+<br/><br/>
+  -1 : never <br/><br/>
+   0 : occasional<br/><br/>
+   1 : daily <br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Smoke)
+```
+  
+##Exploring the Dataset.
+<strong>Hours Sitting</strong>
+<br/><br/> Hours Sitting describes the number of hours spent sitting per day
+<br/><br/>
+  -1 : never <br/><br/>
+   0 : occasional<br/><br/>
+   1 : daily <br/><br/>
+  The hours goes from 0 to 12<br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Hours.Sitting)
+```
+##Exploring the Dataset.
+<strong>Diagnosis</strong>
+<br/><br/> The final diagnosis if the patients sperm quality is normal or altered
+<br/><br/>
+   N : Normal <br/><br/>
+   A : Altered<br/><br/>
+```{r,echo=TRUE}
+  summary(ferti_data$Diagnosis)
+```
+##Structure of the Dataset.
+As we can see we have all of our characteristics with numeric values and the values are bewteen -1 and 1
+```{r,echo=TRUE}
+  str(ferti_data)
+```
+
+
+
+# Distribution of the data
+```{r,echo=FALSE}
+```
+## Season
+```{r,echo=TRUE}
+  hist(ferti_data$Season,main = "Season in which the study was made"
+       ,xlab = "Season",ylab="Patient")
+```
+
+## Season
+We can see that most of the studies were made in spring, the followed by fall, then winter and lastly winter.
+
+## Age
+```{r,echo=TRUE}
+  hist(ferti_data$Age,main = "Age of the patient"
+       ,xlab = "Age",ylab="No Patients")
+```
+
+##Age
+We can see that our histogram is bi-modal because it shows two peaks. Most of the ages are bewteeen 19.8 and 26 years old.
+
+```{r}
+  library(e1071)
+  skewness(ferti_data$Age)
+```
+It's right skewed!!
+
+
+
+
+## Child_Disease
+```{r,echo=TRUE}
+  hist(ferti_data$Child_Disease,main = "Childish diseases"
+       ,xlab = "Yes or not",ylab="No Patients")
+```
+
+## Child_Disease
+We can see that most of the people did not have a disease when there were child 
+```{r}
+  skewness(ferti_data$Child_Disease)
+```
+It's left skewed
+
+
+## Accident
+```{r,echo=TRUE}
+  hist(ferti_data$Accident,main = "Accidents"
+       ,xlab = "Yes or not",ylab="No Patients")
+```
+
+## Accident
+We can see that a little more than the most of the people did have an Accident 
+```{r}
+  skewness(ferti_data$Accident)
+```
+It's Right skewed!
+
+
+
+## Surge
+```{r,echo=TRUE}
+  hist(ferti_data$Surge,main = "Surge"
+       ,xlab = "Yes or not",ylab="No Patients")
+```
+
+## Surge
+We can see that a little more than the most of the people did not have a Surgical intervention
+```{r}
+  skewness(ferti_data$Surge)
+```
+It's Left skewed!
+
+
+## Fever
+```{r,echo=TRUE}
+  hist(ferti_data$Fever,main = "Fever"
+       ,xlab = "Frequency",ylab="No Patients")
+```
+
+## Fever
+We can see that the most of the people had a fever more than three months ago
+```{r}
+  skewness(ferti_data$Fever)
+```
+It'sa little bit Left skewed!
+
+## Alcohol Consumption
+```{r,echo=TRUE}
+  hist(ferti_data$AlcoholConsumption,main = "Alcohol Consumption"
+       ,xlab = "Frequency",ylab="No Patients")
+```
+
+## Alcohol Consumption
+We can see that the most of the people does not consume alcohol
+```{r}
+  skewness(ferti_data$AlcoholConsumption)
+```
+It's Left skewed!
+
+
+## Smoking habit
+```{r,echo=TRUE}
+  hist(ferti_data$Smoke,main = "Smoking Habit"
+       ,xlab = "Frequency",ylab="No Patients")
+```
+
+## Smoking Habit
+We can see that the most of the people does not smoke
+```{r}
+  skewness(ferti_data$Smoke)
+```
+It's Right skewed!
+
+
+## Hours Sitting
+```{r,echo=TRUE}
+  hist(ferti_data$Hours.Sitting,main = "Hours of sitting"
+       ,xlab = "Number of Hours",ylab="No Patients")
+```
+
+## Hours sitting
+We can see that the most of the people spend between 4.2 and 6 hours sitting down
+```{r}
+  skewness(ferti_data$Hours.Sitting)
+```
+It's Right skewed!
+
+# Plots
+```{r,echo=FALSE}
+```
+## Hours sitting and Age
+```{r,echo=FALSE}
+  plot(x=ferti_data$Hours.Sitting,y=ferti_data$Age,xlab="Status",ylab="Age")
+  cor(ferti_data$Hours.Sitting,ferti_data$Age)
+```
+
+## Diagnosis
+```{r,echo=TRUE}
+Diagnostico<-c()
+for (i in 1:100) {
+  if(ferti_data$Diagnosis[i]=="N") {
+    Diagnostico<-c(Diagnostico,1)
+  }else{
+    Diagnostico<-c(Diagnostico,0)
+  }
+}
+table(Diagnostico)
+```
+## Diagnosis Boxplot
+```{r,echo=TRUE}
+boxplot(Diagnostico)
+```
+
+
+## Age and Diagnosis
+
+```{r, echo=TRUE}
+  nrow(Diagnostico)
+  cor(Diagnostico,ferti_data$Age)
+```
+
+## Age and Diagnosis
+
+```{r}
+  plot(Diagnostico,ferti_data$Age)
+```
+
+
+
+## Age and Diagnosis
+
+The correlation coefficient it´s not as high as we spected but seen our data,
+we notice that the younger people had mor chances of having a Altered sperm quality, also as we saw in the plot we have some points down, and we notice that we have 5 patients with the same age, 24 years, old that have Altered sperm quality.
+
+#K nearest neighbors.
+
+##K nearest neighbors.
+K nearest neighbors part from the fact that all objects of a dataset can be inserted in a N-dimentional plane by the value of its $N$ distinct attributes.
+
+Objects with similar characteristics will be close among them in the plane, and they will form a class. The algorithm insert a new object into the plane, compute the euclidean distance between all the existing (and already classified) objects and the new one inserted (not classified yet) then, selects the class which have more members among the $K$ nearest neigbohrs from the new object. This will be the class of the object. 
+
+The selection of $K$ isn't a trivial election. If $K$ very small the result will have a large prediction error. If $K$ is very large then the result will be over trained, it means, the algorithm will memorize the value instead of calculate it, the result won't be reliable and will be succeptible to many error if we try adding new objects out of our training and testing set.
+
+##K nearest neighbors.
+To can make the prediction using k nearest neigbhors we need:
+
+* A training set.
+* A testing set.
+* Diagnose of training set (transformed into labels).
+* Diagnose of the testing set (transformed into labels).
+* A profitable election of the value of $K$.
+
+A preprocessing of the dataset is needed in order to create all the required components.
+
+# Preprocessing
+
+##Preprocessing.
+Our dataset was already normalized. The method for normalization used was Min-max normalization, because all values are between 0 and 1.
+
+The dataset don't have missing values, so we didn't have to worry about. 
+
+The additional steps to preprocess the data was convert the diagnosis values into factors more descriptives:
+```{r,echo=TRUE}
+ferti_data$Diagnosis<-factor(ferti_data$Diagnosis,
+                             levels=c("N","O"),
+                             labels = c("Normal","Infertile"))
+```
+
+##Preprocessing.
+Then, we made a new dataset whitout the diagnosis attribute.
+```{r,echo=TRUE}
+  ferti_data_n<-as.data.frame(ferti_data[1:9])
+```
+
+##Preprocessing.
+We separated the dataset into 2 datasets: the one to do the training process, and the one to do the prediction test. The dataset consists of 100 observations, and we save 80% of the data for the training set and 20% of the data for the test set.
+
+```{r,echo=FALSE}
+  ferti_data_train<-ferti_data_n[1:85,]
+  ferti_data_test<-ferti_data_n[86:100,]
+```
+
+##Preprocessing.
+We took the diagnosis labels of the train set and the test set.
+```{r,echo=TRUE}
+  train_labels<-ferti_data[1:85,10]
+  test_labels<-ferti_data[86:100,10]
+```
+
+##Preprocessing.
+To select the value of $K$, just after we selected the range of the training set and testing set, we use the Binary Search technique to find the optimal value which give us a profitable result whitout an over trained approach. After we ran many times the knn algorithm, we find 3 as the optimal value we had looking for.
+
+#Prediction result.
+
+##Processing and results.
+
+```{r,echo=TRUE}
+  fertility_prediction<-knn(train=ferti_data_train,
+                            test=ferti_data_test,
+                            cl=train_labels,
+                            k=3)
+```
+
+##Processing and results.
+```{r,echo=TRUE}
+  table(test_labels)
+  table(fertility_prediction)
+  #table(fertility_prediction,test_labels)
+```
+
+##Preprocessing and results.
+```{r,echo=FALSE}
+  CrossTable(x=test_labels,
+             y=fertility_prediction,
+             prop.chisq = FALSE)
+```
+
+
+##Classification outputs
+In this point we have the results of our prediction model and we have the answers. We have 15 rows in each set. Let´s se what happen in each set.
+
+This are our predictions, our predictions says that we have 13 normal patiens and 2 infertile patients.
+```{r,echo=TRUE}
+  table(fertility_prediction)
+```
+
+We can see here that our data distribution remains the same, so we can say that our results tends to be correct.
+```{r,echo=TRUE}
+  plot(fertility_prediction)
+```
+
+In this plot we can still see tha being a Infertile patient it´s a outlayer.
+
+
+
+
+
+This are our test results, our test results says that we have 14 normal patients and 1 infertile patient.
+```{r,echo=TRUE}
+  table(test_labels)
+```
+
+We can see that also our test labels tell us tha being an Infertile patient it´s an outlayer.
+
+```{r,echo=TRUE}
+  plot(test_labels)
+```
+
+  </br></br>
+  -Our two plots look alike, that's a good thing</br></br>
+  -Our two plots have the same conclusion</br></br>
+  -At this point we can say that our prediction model failed in 1 people, at this    point we can say that our model has an effectiveness of a 94 percentage.</br></br>
+
+
+## Frequency tables and Final Interpretation
+
+```{r,echo=TRUE}
+  CrossTable(x=test_labels,
+             y=fertility_prediction,
+             prop.chisq = FALSE)
+```
+
+We can see on our table that we have 13 true-negative in our confusion matrix. The interpretation as we can see it`s that we had the data of these 15 patients and **14 were in a normal condition** and after performing the data analysis, with our algorithm we gave **13 Normal predictions** as final result. In this case we can say that we were right with this 13 patients, everything well performed and we can say that we have one lost patient but we had 13 in the right site.
+```{r,echo=TRUE}
+  13
+```
+
+We have 0 False negative. We can say that **we did not have a patient with infertility and told him that he was normal**, we can say that this is right, this is a good thing about our predictions not having somebody with a bad condition and told him that he was alright.
+```{r,echo=TRUE}
+  0
+```
+
+We have 1 false negative. This means that **it was a normal patient** so from the data that we got we told him that he was infertile but he was not. This not bad because the patient later soon will notice the real condition in a better study, this is not bad but it's not perfect.
+```{r,echo=TRUE}
+  1
+```
+Finally, we have 1 true positive. This means that **an infertile patient** was diagnosed, by our prediction model, that **he was infertile**, this right, thats the right answer so there is nothing to worry about in here.
+```{r,echo=TRUE}
+  1
+```
+
+**Finally we can say that our model only had 1 mistake and that makes our model 94 effective**
+
+
+#Conclusions
+
+##General conclusions
+-Knn was not the best algorithm for this dataset, should work better on numeric attributes rather than categorical attributes</br></br>
+-Knn was not the best algorithm for this dataset, despite that it was a classification algorithm, there were only 2 classification types</br></br>
+-We notice that our result kept the correct values when K was between 2 and 5, we say that is due of:</br></br>
+  -Size of the dataset</br></br>
+  -Number of attributes</br></br>
+- The dataset was to little and we had 88 observations in a class and the remaining 12 in other, the algorithm did not have the optimal learning</br></br>
+
+##Other domains
+-It was only a part of the domain of Infertility because we can study the female fertility, but in this case it's only male's domain</br></br>
+-Male's fertility it's a quite big domain, it can't be restricted to 10 attributes</br></br>
+
+##Limitations
+-The dataset was small</br></br>
+-- We have half categorical attributes and the other half numeric</br></br>
+-- The dataset was unbalanced, we had 88 patients with normal conditions and only 12 infertile</br></br>
+-- Dataset attributes could be better or could describe more than they did</br></br>
+
+##Advantages
+-Easy to implement</br></br>
+-Easy to interpret</br></br>
+
+##Disadvantages
+- Operational Cost</br></br>
+- Every prediction has to create a model

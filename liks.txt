@@ -1,0 +1,7 @@
+http://archive.ics.uci.edu/ml/datasets/Fertility
+
+Fertilidad de los pacientes
+
+http://archive.ics.uci.edu/ml/datasets/Echocardiogram
+
+Pacientes que van a sobrevivir por lo menos un año después de un infarto
