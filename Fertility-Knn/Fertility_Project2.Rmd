@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## Introduction
-Using R a data analysis programming language and KNN K nearest neighbors is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure, we are going to analyze a dataset where 100 volunteers provide a semen sample analyzed according to the WHO 2010 criteria. Sperm concentration are related to socio-demographic data, environmental factors, health status, and life habits. The main goal is to predict whether a patient´s
+Using R a data analysis programming language and KNN, K nearest neighbors, is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure, we are going to analyze a dataset where 100 volunteers provide a semen sample analyzed according to the WHO 2010 criteria. Sperm concentration are related to socio-demographic data, environmental factors, health status and life habits. The main goal is to predict whether a patient´s
 sperm quality it's ALTERED or NORMAL.<br/>
 Despite of we are going to deal with data classification, KNN application and final result interpretation.
 
@@ -31,8 +31,7 @@ In the present project we are attempting to predict wheter a men is fertile or i
 We are using the K-nearest neigbohrs algorithm to get a model so we will be able to predict fertility
 for new incoming men. 
 
-Because the domain deals with medical conditions of patients, we are expecting to obtain a
-model with a high level of prediction.
+Because the domain deals with medical conditions of patients, we are expecting to obtain a model with a high level of prediction.
 
 The data was obtained from UCI Machine Learning Repository.
 It contains 100 observations and 10 attributes.
@@ -221,7 +220,7 @@ AlcoholConsumption goes from 0 to 1<br/>
   summary(ferti_data$Diagnosis)
 ```
 ##Structure of the Dataset.
-As we can see we have all of our characteristics with numeric values and the values are bewteen -1 and 1
+As we can see we have half numeric values and the other half categorical values and the values are bewteen -1 and 1
 ```{r,echo=TRUE}
   str(ferti_data)
 ```
@@ -237,7 +236,6 @@ As we can see we have all of our characteristics with numeric values and the val
        ,xlab = "Season",ylab="Patient")
 ```
 
-## Season
 We can see that most of the studies were made in spring, the followed by fall, then winter and lastly winter.
 
 ## Age
@@ -246,7 +244,6 @@ We can see that most of the studies were made in spring, the followed by fall, t
        ,xlab = "Age",ylab="No Patients")
 ```
 
-##Age
 We can see that our histogram is bi-modal because it shows two peaks. Most of the ages are bewteeen 19.8 and 26 years old.
 
 ```{r}
@@ -264,7 +261,6 @@ It's right skewed!!
        ,xlab = "Yes or not",ylab="No Patients")
 ```
 
-## Child_Disease
 We can see that most of the people did not have a disease when there were child 
 ```{r}
   skewness(ferti_data$Child_Disease)
@@ -278,7 +274,6 @@ It's left skewed
        ,xlab = "Yes or not",ylab="No Patients")
 ```
 
-## Accident
 We can see that a little more than the most of the people did have an Accident 
 ```{r}
   skewness(ferti_data$Accident)
@@ -293,7 +288,6 @@ It's Right skewed!
        ,xlab = "Yes or not",ylab="No Patients")
 ```
 
-## Surge
 We can see that a little more than the most of the people did not have a Surgical intervention
 ```{r}
   skewness(ferti_data$Surge)
@@ -307,7 +301,6 @@ It's Left skewed!
        ,xlab = "Frequency",ylab="No Patients")
 ```
 
-## Fever
 We can see that the most of the people had a fever more than three months ago
 ```{r}
   skewness(ferti_data$Fever)
@@ -320,7 +313,6 @@ It'sa little bit Left skewed!
        ,xlab = "Frequency",ylab="No Patients")
 ```
 
-## Alcohol Consumption
 We can see that the most of the people does not consume alcohol
 ```{r}
   skewness(ferti_data$AlcoholConsumption)
@@ -334,7 +326,6 @@ It's Left skewed!
        ,xlab = "Frequency",ylab="No Patients")
 ```
 
-## Smoking Habit
 We can see that the most of the people does not smoke
 ```{r}
   skewness(ferti_data$Smoke)
@@ -348,7 +339,6 @@ It's Right skewed!
        ,xlab = "Number of Hours",ylab="No Patients")
 ```
 
-## Hours sitting
 We can see that the most of the people spend between 4.2 and 6 hours sitting down
 ```{r}
   skewness(ferti_data$Hours.Sitting)
@@ -376,7 +366,7 @@ for (i in 1:100) {
 }
 table(Diagnostico)
 ```
-## Diagnosis Boxplot
+
 ```{r,echo=TRUE}
 boxplot(Diagnostico)
 ```
@@ -389,15 +379,11 @@ boxplot(Diagnostico)
   cor(Diagnostico,ferti_data$Age)
 ```
 
-## Age and Diagnosis
 
 ```{r}
   plot(Diagnostico,ferti_data$Age)
 ```
 
-
-
-## Age and Diagnosis
 
 The correlation coefficient it´s not as high as we spected but seen our data,
 we notice that the younger people had mor chances of having a Altered sperm quality, also as we saw in the plot we have some points down, and we notice that we have 5 patients with the same age, 24 years, old that have Altered sperm quality.
@@ -499,7 +485,7 @@ We can see here that our data distribution remains the same, so we can say that 
   plot(fertility_prediction)
 ```
 
-In this plot we can still see tha being a Infertile patient it´s a outlayer.
+In this plot we can still see that being a Infertile patient it´s a outlayer.
 
 
 
@@ -510,7 +496,7 @@ This are our test results, our test results says that we have 14 normal patients
   table(test_labels)
 ```
 
-We can see that also our test labels tell us tha being an Infertile patient it´s an outlayer.
+We can see that also our test labels tell us that being an Infertile patient it´s an outlayer.
 
 ```{r,echo=TRUE}
   plot(test_labels)
@@ -540,7 +526,7 @@ We have 0 False negative. We can say that **we did not have a patient with infer
   0
 ```
 
-We have 1 false negative. This means that **it was a normal patient** so from the data that we got we told him that he was infertile but he was not. This not bad because the patient later soon will notice the real condition in a better study, this is not bad but it's not perfect.
+We have 1 false negative. This means that **it was a normal patient** so from the data that we got we told him that he was infertile but he was not. This not bad because the patient later soon will notice the real condition in a better study, this is not bad, but it's not perfect.
 ```{r,echo=TRUE}
   1
 ```
