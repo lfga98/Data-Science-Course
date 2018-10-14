@@ -38,5 +38,39 @@ sms_corpus_clean <- tm_map(sms_corpus_clean,stemDocument)
 sms_corpus_clean <- tm_map(sms_corpus_clean,stripWhitespace)
 ##Creating sparse matrix
 sms_dtm <- DocumentTermMatrix(sms_corpus_clean)
+## Creating the second sparse matrix this does all the past tasks
+sms_dtm2 <- DocumentTermMatrix(sms_corpus,
+                               control = list(
+                                 tolower= TRUE,
+                                 removeNumbers = TRUE,
+                                 stopwords= TRUE,
+                                 removePunctuation = TRUE,
+                                 stemming=TRUE
+                                 ))
+sms_dtm_train <- sms_dtm[1:4169, ]
+sms_dtm_test <- sms_dtm[4170:5559, ]
+sms_train_labels <- sms_raw[1:4169, ]$ type
+sms_test_labels <- sms_raw[4170:5559, ] $ type
+##Confirming the subsets are representative
+prop.table(table(sms_train_labels))
+prop.table(table(sms_test_labels))
+install.packages ('wordcloud')
+library('wordcloud')
+install.packages ('RColorBrewer')
+library('RColorBrewer')
+library(tm)
+library(NLP)
+wordcloud(sms_corpus_clean,min.freq = 50,random.order = FALSE)
+spam <- subset(sms_raw,type=="spam")
+##Removing words that dont appear to much
+sms_freq_words <-findFreqTerms(sms_dtm_train, 5)
+sms_dtm_freq_train <- sms_dtm_train[ , sms_freq_words]
+sms_dtm_freq_test <- sms_dtm_test[ , sms_freq_words]
 
- 
+convert_counts <- function( x){
+  x <- ifelse( x > 0 ,"Yes","No")
+}
+
+sms_train <- apply(sms_dtm_freq_train,MARGIN = 2,convert_counts)
+sms_test <- apply(sms_dtm_freq_test,MARGIN = 2,convert_counts)
+library(e1071)
