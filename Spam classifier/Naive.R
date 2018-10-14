@@ -73,4 +73,10 @@ convert_counts <- function( x){
 
 sms_train <- apply(sms_dtm_freq_train,MARGIN = 2,convert_counts)
 sms_test <- apply(sms_dtm_freq_test,MARGIN = 2,convert_counts)
+##Applying naive bayes
 library(e1071)
+sms_classifier <-naiveBayes(sms_train,sms_train_labels)
+sms_test_pred <- predict(sms_classifier,sms_test)
+library(gmodels)
+##Results
+CrossTable(sms_test_pred,sms_test_labels,prop.chisq = FALSE,prop.t = FALSE,dnn=c('predicted','actual'))
