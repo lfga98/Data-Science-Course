@@ -36,4 +36,7 @@ sms_corpus_clean <- tm_map(sms_corpus_clean,removePunctuation)
 sms_corpus_clean <- tm_map(sms_corpus_clean,stemDocument)
 ## White spaces 
 sms_corpus_clean <- tm_map(sms_corpus_clean,stripWhitespace)
+##Creating sparse matrix
+sms_dtm <- DocumentTermMatrix(sms_corpus_clean)
+
  
